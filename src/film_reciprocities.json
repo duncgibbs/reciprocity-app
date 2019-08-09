@@ -1,0 +1,17 @@
+{
+    "portra400": {
+        "name": "Portra 400",
+        "coefficient": 0.870189,
+        "exponential": 1.35815
+    },
+    "velvia": {
+        "name": "Velvia",
+        "coefficient": 0.8971,
+        "exponential": 1.2437
+    },
+    "ektar100": {
+        "name": "Ektar 100",
+        "coefficient": 0.7800,
+        "exponential": 1.1768
+    }
+}

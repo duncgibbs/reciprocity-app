@@ -1,0 +1,52 @@
+.App {
+    text-align: center;
+}
+
+.header {
+    padding: 10px 0px 10px 0px;
+    background-color: black;
+    color: white;
+}
+
+.calculator {
+    padding: 3%;
+}
+
+.input-div {
+    padding-bottom: 2%;
+}
+
+.form-control {
+   text-align: center;
+}
+
+.dropdown > button {
+    width: 100%;
+    background-color: black !important;
+}
+
+.input-group > input {
+    border-width: 2px;
+    border-color: black;
+
+}
+
+.dropdown-menu {
+    width: 100%;
+    text-align: center;
+    background-color: black;
+}
+
+.dropdown-menu > a {
+    color: white;
+}
+
+.result input {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.result ::placeholder {
+    font-size: 1rem;
+    font-weight: 400;
+}
