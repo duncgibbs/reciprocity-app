@@ -6,22 +6,19 @@ import Form from 'react-bootstrap/Form';
 class ReciprocityCalculator extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {coefficient: 1, exponential: 1, adjustedTime: ''};
+        this.state = {coefficient: 1, exponential: 1, measuredTime: '', adjustedTime: ''};
 
         this.changeCalculations = this.changeCalculations.bind(this);
         this.calculateAdjustedTime = this.calculateAdjustedTime.bind(this);
+        this.changeMeasuredTime = this.changeMeasuredTime.bind(this);
     }
 
-    changeCalculations(coefficient, exponential) {
-        this.setState({coefficient: coefficient, exponential: exponential});
-    }
-
-    calculateAdjustedTime(event) {
+    calculateAdjustedTime(measuredTime, coefficient, exponential) {
         let adjustedTime;
-        if (event.target.value !== "") {
-            let measuredTime = parseInt(event.target.value);
-            if (measuredTime >= 1) {
-                adjustedTime = this.state.coefficient*(Math.pow(measuredTime, this.state.exponential));
+        if (measuredTime !== "") {
+            let measuredTimeInt = parseInt(measuredTime);
+            if (measuredTimeInt >= 1) {
+                adjustedTime = coefficient*(Math.pow(measuredTimeInt, exponential));
                 adjustedTime = Math.round(adjustedTime);
             } else {
                 adjustedTime = "Measured time must be at least one second"
@@ -29,7 +26,18 @@ class ReciprocityCalculator extends React.Component {
         } else {
             adjustedTime = '';
         }
-        this.setState({adjustedTime: adjustedTime});
+        return adjustedTime;
+    }
+
+    changeCalculations(coefficient, exponential) {
+        let adjustedTime = this.calculateAdjustedTime(this.state.measuredTime, coefficient, exponential);
+        this.setState({coefficient: coefficient, exponential: exponential, adjustedTime: adjustedTime});
+    }
+
+    changeMeasuredTime(event) {
+        let measuredTime = event.target.value;
+        let adjustedTime = this.calculateAdjustedTime(measuredTime, this.state.coefficient, this.state.exponential);
+        this.setState({measuredTime: measuredTime, adjustedTime: adjustedTime});
     }
 
     render() {
@@ -37,7 +45,7 @@ class ReciprocityCalculator extends React.Component {
             <div>
                 <div class="input-div">
                     <InputGroup>
-                        <Form.Control type="text" placeholder="Measured time" onChange={this.calculateAdjustedTime} />
+                        <Form.Control type="text" placeholder="Measured time" onChange={this.changeMeasuredTime} />
                     </InputGroup>
                 </div>
                 <div class="input-div">
