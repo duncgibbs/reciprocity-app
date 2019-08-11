@@ -1,0 +1,10 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: reciprocity-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "reciprocity-ip"
+spec:
+  backend:
+    serviceName: reciprocity-app
+    servicePort: 8080

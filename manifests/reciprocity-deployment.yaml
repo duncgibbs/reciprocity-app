@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: reciprocity-app
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: reciprocity
+  template:
+    metadata:
+      labels:
+        run: reciprocity
+    spec:
+      containers:
+        - image: gcr.io/reciprocity-calculator/reciprocity-app:v1
+          imagePullPolicy: IfNotPresent
+          name: reciprocity-calculator
